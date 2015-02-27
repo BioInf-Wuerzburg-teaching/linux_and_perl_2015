@@ -1,6 +1,7 @@
 package fasta_seq;
 use strict;
 use warnings;
+use overload '""'=>"as_fasta";
 
 sub new
 {
@@ -41,7 +42,7 @@ sub species
 sub as_fasta
 {
     my $self=shift;
-    my$fasta=">".$self->ID;
+    my $fasta=">".$self->ID;
     if (defined $self->species){$fasta.=" ".$self->species;}
     $fasta.=" ".$self->desc if (defined $self->desc);
     $fasta.="\n".$self->seq."\n";
